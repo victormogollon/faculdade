@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Lista de Compras</title>
-  <style type="text/css">
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    html, body {
-      width: 100%;
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body>
-  <iframe src="http://hospedagem.lucascavalcanti.com.br/faculdade" frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
-</body>
+<html lang="en" data-framework="angular2">
+  <head>
+    <meta charset="utf-8">
+    <title>Lista de Compras</title>
+    <link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+    <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+  </head>
+  <body>
+    <todo-app></todo-app>
+    <script>
+      System.config({
+        packages: {
+          'app': {
+            format: 'cjs',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/bootstrap');
+    </script>
+  </body>
 </html>
