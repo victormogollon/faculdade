@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Todo = (function () {
     function Todo(title) {
         this.completed = false;
@@ -15,20 +17,33 @@ var Todo = (function () {
         configurable: true
     });
     return Todo;
-})();
+}());
 exports.Todo = Todo;
 var TodoStore = (function () {
     function TodoStore() {
         var persistedTodos = JSON.parse(localStorage.getItem('angular2-todos') || '[]');
-        // Normalize back into classes
-        this.todos = persistedTodos.map(function (todo) {
+        var url = window.location.href;
+
+
+        this.todos = todoGlobal.map(function (todo) {
             var ret = new Todo(todo._title);
             ret.completed = todo.completed;
             return ret;
         });
+
+        jQuery.get(url+'data.php', '', function (data) {
+            todoGlobal = data;
+        });
     }
     TodoStore.prototype.updateStore = function () {
         localStorage.setItem('angular2-todos', JSON.stringify(this.todos));
+        var url = window.location.href;
+        jQuery.ajax({
+            type: "POST",
+            dataType : 'json',
+            url: url+'data.php',
+            data: {'data': JSON.stringify(this.todos)}
+        });
     };
     TodoStore.prototype.getWithCompleted = function (completed) {
         return this.todos.filter(function (todo) { return todo.completed === completed; });
@@ -63,6 +78,6 @@ var TodoStore = (function () {
         this.updateStore();
     };
     return TodoStore;
-})();
+}());
 exports.TodoStore = TodoStore;
 //# sourceMappingURL=store.js.map

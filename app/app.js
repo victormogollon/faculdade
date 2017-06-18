@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,8 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('angular2/core');
-var store_1 = require('./services/store');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("angular2/core");
+var store_1 = require("./services/store");
+
+
+
 var TodoApp = (function () {
     function TodoApp(todoStore) {
         this.newTodoText = '';
@@ -47,15 +52,14 @@ var TodoApp = (function () {
             this.newTodoText = '';
         }
     };
-    TodoApp = __decorate([
-        core_1.Component({
-            selector: 'todo-app',
-            templateUrl: 'app/app.html'
-        }), 
-        __metadata('design:paramtypes', [store_1.TodoStore])
-    ], TodoApp);
     return TodoApp;
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
+}());
+TodoApp = __decorate([
+    core_1.Component({
+        selector: 'todo-app',
+        templateUrl: 'app/app.html'
+    }),
+    __metadata("design:paramtypes", [store_1.TodoStore])
+], TodoApp);
 exports.default = TodoApp;
 //# sourceMappingURL=app.js.map
